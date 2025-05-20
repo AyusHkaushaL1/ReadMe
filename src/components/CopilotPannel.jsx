@@ -5,12 +5,16 @@ const initialSources = [
   { title: "Getting a refund", locked: false },
   { title: "Refund for an order placed by mistake", locked: false },
   { title: "Refund for an unwanted gift", locked: false },
+  { title: "General Product FAQs", locked: false },
+  { title: "Shipping & Delivery Information", locked: false },
 ];
 
 const advancedSources = [
   { title: "Processing a refund", locked: true },
   { title: "Refunding an order placed over 60 days ago", locked: false },
   { title: "Dealing with refund disputes", locked: true },
+  { title: "Advanced Warranty Claims", locked: true },
+  { title: "Payment Gateway Troubleshooting", locked: true },
 ];
 
 export default function CopilotPanel({ setChatInput }) {
@@ -40,6 +44,18 @@ export default function CopilotPanel({ setChatInput }) {
       answer = "Our general refund policy states that items can be returned within 30 days of purchase for a full refund, provided they are in their original condition. For specific details on different product categories, please refer to our official refund policy documentation.";
     } else if (questionLower.includes("exception")) {
       answer = "Exceptions to policies are reviewed on a case-by-case basis and typically require manager approval. Please provide more details about the situation for us to assess if an exception is possible.";
+    } else if (questionLower.includes("delivery") || questionLower.includes("track") || questionLower.includes("shipping") || questionLower.includes("order status")) {
+        answer = "To check the delivery status of your order, please provide your order ID. You can usually find the tracking number in your order confirmation email. We'll then provide you with the latest updates.";
+        newSources = [...initialSources, { title: "Order Tracking Guide", locked: false }];
+    } else if (questionLower.includes("warranty") || questionLower.includes("guarantee") || questionLower.includes("broken") || questionLower.includes("faulty")) {
+        answer = "Most of our products come with a standard 1-year warranty covering manufacturing defects. Please refer to the product page or your purchase invoice for specific warranty details. For faulty items, we can arrange a replacement or repair.";
+        newSources = [...initialSources, { title: "Product Warranty Terms", locked: false }];
+    } else if (questionLower.includes("payment") || questionLower.includes("card") || questionLower.includes("methods") || questionLower.includes("pay")) {
+        answer = "We accept various payment methods including major credit/debit cards (Visa, Mastercard, Amex), NetBanking, UPI, and popular digital wallets. Cash on Delivery is also available for selected pin codes.";
+        newSources = [...initialSources, { title: "Accepted Payment Methods", locked: false }];
+    } else if (questionLower.includes("contact") || questionLower.includes("support") || questionLower.includes("call") || questionLower.includes("reach") || questionLower.includes("hours")) {
+        answer = `You can reach our support team via live chat during business hours (9 AM - 6 PM IST, Monday to Friday) or by emailing us at support@example.com. We aim to respond to all email inquiries within 24 hours.`;
+        newSources = [...initialSources, { title: "Contact Us & Support Hours", locked: false }];
     } else if (questionLower.includes("hi") || questionLower.includes("hello")) {
       answer = "Hello! How can I help you today regarding this conversation?";
     } else {
