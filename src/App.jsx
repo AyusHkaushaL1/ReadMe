@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Sidebar from "./components/Sidebar";
+import SideBar from "./components/SideBar";
 import ChatWindow from "./components/ChatWindow";
 import CopilotPanel from "./components/CopilotPanel";
 
@@ -9,7 +9,7 @@ export default function App() {
 
   return (
     <div className="flex h-screen bg-gray-100 font-sans">
-      <Sidebar />
+      <SideBar />
       <ChatWindow
         chatInput={chatInput}
         setChatInput={setChatInput}
@@ -20,3 +20,4 @@ export default function App() {
     </div>
   );
 }
+
