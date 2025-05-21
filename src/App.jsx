@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import Sidebar from "./components/SideBar";
-import ChatWindow from "./components/chatWindow";
-import CopilotPanel from "./components/copilotPannel";
+import React, { useState } from "react";
+import Sidebar from "./components/Sidebar";
+import ChatWindow from "./components/ChatWindow";
+import CopilotPanel from "./components/CopilotPanel";
 
 export default function App() {
   const [chatInput, setChatInput] = useState("");
